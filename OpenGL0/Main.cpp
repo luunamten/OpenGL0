@@ -17,11 +17,7 @@ void n_glShaderSource(GLuint shader, const char* source, const GLint* length) {
 	sourceFile.close();
 }
 
-int main(int arg, char *args[]) {
-	std::cout << R""(
-	 fefef
-fef)"" << std::endl;
-	
+int main(int arg, char *args[]) {	
 	if (!glfwInit()) {
 		std::cout << "GLFW init error!" << std::endl;
 		return -1;
