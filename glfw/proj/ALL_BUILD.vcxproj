@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B1CCE950-7FCD-349E-BDE3-BDA9E2A62EC4}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Project\CWorkspace\OpenGL0\glfw\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Project/CWorkspace/OpenGL0/glfw/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+D:\Soft\Cmake\bin\cmake.exe -SD:/Project/CWorkspace/OpenGL0/glfw -BD:/Project/CWorkspace/OpenGL0/glfw/proj --check-stamp-file D:/Project/CWorkspace/OpenGL0/glfw/proj/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Project\CWorkspace\OpenGL0\glfw\cmake_uninstall.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3.pc.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3Config.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw_config.h.in;D:\Soft\Cmake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompilerABI.c;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystem.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckLibraryExists.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;D:\Soft\Cmake\share\cmake-3.15\Modules\FindDoxygen.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageMessage.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindThreads.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\GNUInstallDirs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Project/CWorkspace/OpenGL0/glfw/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+D:\Soft\Cmake\bin\cmake.exe -SD:/Project/CWorkspace/OpenGL0/glfw -BD:/Project/CWorkspace/OpenGL0/glfw/proj --check-stamp-file D:/Project/CWorkspace/OpenGL0/glfw/proj/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Project\CWorkspace\OpenGL0\glfw\cmake_uninstall.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3.pc.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3Config.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw_config.h.in;D:\Soft\Cmake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompilerABI.c;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystem.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckLibraryExists.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;D:\Soft\Cmake\share\cmake-3.15\Modules\FindDoxygen.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageMessage.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindThreads.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\GNUInstallDirs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Project/CWorkspace/OpenGL0/glfw/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+D:\Soft\Cmake\bin\cmake.exe -SD:/Project/CWorkspace/OpenGL0/glfw -BD:/Project/CWorkspace/OpenGL0/glfw/proj --check-stamp-file D:/Project/CWorkspace/OpenGL0/glfw/proj/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Project\CWorkspace\OpenGL0\glfw\cmake_uninstall.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3.pc.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3Config.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw_config.h.in;D:\Soft\Cmake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompilerABI.c;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystem.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckLibraryExists.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;D:\Soft\Cmake\share\cmake-3.15\Modules\FindDoxygen.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageMessage.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindThreads.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\GNUInstallDirs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Project/CWorkspace/OpenGL0/glfw/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+D:\Soft\Cmake\bin\cmake.exe -SD:/Project/CWorkspace/OpenGL0/glfw -BD:/Project/CWorkspace/OpenGL0/glfw/proj --check-stamp-file D:/Project/CWorkspace/OpenGL0/glfw/proj/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Project\CWorkspace\OpenGL0\glfw\cmake_uninstall.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeRCCompiler.cmake;D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\3.15.0-rc1\CMakeSystem.cmake;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3.pc.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw3Config.cmake.in;D:\Project\CWorkspace\OpenGL0\glfw\src\glfw_config.h.in;D:\Soft\Cmake\share\cmake-3.15\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCCompilerABI.c;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCommonLanguageInclude.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeCompilerIdDetection.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompileFeatures.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerABI.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineCompilerId.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeDetermineSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeFindBinUtils.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeGenericSystem.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeInitializeConfigs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeLanguageInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakePackageConfigHelpers.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitIncludeInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeParseImplicitLinkInfo.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCCompiler.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeRCInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystem.cmake.in;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInformation.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeSystemSpecificInitialize.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestCompilerCommon.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CMakeTestRCCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CheckLibraryExists.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ADSP-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMCC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\ARMClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\AppleClang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Borland-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Cray-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GHS-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\GNU-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\HP-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IAR-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Intel-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\MSVC-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PGI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\PathScale-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SCO-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TI-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\Watcom-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XL-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Compiler\zOS-C-DetermineCompiler.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\CompilerId\VS-10.vcxproj.in;D:\Soft\Cmake\share\cmake-3.15\Modules\FindDoxygen.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageHandleStandardArgs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindPackageMessage.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\FindThreads.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\GNUInstallDirs.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Internal\FeatureTesting.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC-C.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows-MSVC.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\Windows.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\Platform\WindowsPaths.cmake;D:\Soft\Cmake\share\cmake-3.15\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Project\CWorkspace\OpenGL0\glfw\proj\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\ZERO_CHECK.vcxproj">
+      <Project>{9AB6579C-A38B-398B-AD9A-30FB8830C708}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\boing.vcxproj">
+      <Project>{D8E3D9FE-42E3-3BA6-A059-1EDE6F0E0C0F}</Project>
+      <Name>boing</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\clipboard.vcxproj">
+      <Project>{74D72801-997B-38A3-A372-3FBC90344723}</Project>
+      <Name>clipboard</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\cursor.vcxproj">
+      <Project>{66BFE5A6-CF96-396E-9193-AB846769FE49}</Project>
+      <Name>cursor</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\empty.vcxproj">
+      <Project>{9E3EA2D3-E81F-3222-BBEA-FA7205613989}</Project>
+      <Name>empty</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\events.vcxproj">
+      <Project>{15DBA902-D7FC-3134-9C2C-5E746B478C8C}</Project>
+      <Name>events</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\gamma.vcxproj">
+      <Project>{BEFD227A-34A7-3C7E-BD34-F7176A2B01B6}</Project>
+      <Name>gamma</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\gears.vcxproj">
+      <Project>{AFA1AC6F-7246-34E8-840C-79A8965B0B6F}</Project>
+      <Name>gears</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\src\glfw.vcxproj">
+      <Project>{3422BAF2-2CF0-3AC2-86C5-33801958254F}</Project>
+      <Name>glfw</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\glfwinfo.vcxproj">
+      <Project>{F84371B4-7F88-3C8B-AE24-99E6F47B98E9}</Project>
+      <Name>glfwinfo</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\heightmap.vcxproj">
+      <Project>{9EA26E99-A331-3CA1-9A22-0A113CA4EDD9}</Project>
+      <Name>heightmap</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\icon.vcxproj">
+      <Project>{CE0D95A3-7131-322D-8F94-C915F7658AE4}</Project>
+      <Name>icon</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\iconify.vcxproj">
+      <Project>{7B66499C-51DC-3C4A-BB5A-46CB65C58C92}</Project>
+      <Name>iconify</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\inputlag.vcxproj">
+      <Project>{35D66E1E-3AA9-3553-B2CC-77484CBF3156}</Project>
+      <Name>inputlag</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\joysticks.vcxproj">
+      <Project>{39615BCE-4F11-3D7B-9B27-68DAF5EF4887}</Project>
+      <Name>joysticks</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\monitors.vcxproj">
+      <Project>{A686C408-033C-342B-8675-D6B72D872224}</Project>
+      <Name>monitors</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\msaa.vcxproj">
+      <Project>{DBC5C450-FB16-359A-BA0A-B7372444D235}</Project>
+      <Name>msaa</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\offscreen.vcxproj">
+      <Project>{B1065B96-06C9-3106-AE9D-7DB5949151F9}</Project>
+      <Name>offscreen</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\opacity.vcxproj">
+      <Project>{9CE9445A-A119-3200-AEAD-9A3568ADD35E}</Project>
+      <Name>opacity</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\particles.vcxproj">
+      <Project>{9AFAF018-413C-3E2A-8D21-5C9AC46417B6}</Project>
+      <Name>particles</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\reopen.vcxproj">
+      <Project>{5B7A5DC3-BF9A-3396-9A6E-AC57E6C25625}</Project>
+      <Name>reopen</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\sharing.vcxproj">
+      <Project>{7D7AF25A-99C1-3EAA-85CE-A9FC098332B2}</Project>
+      <Name>sharing</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\simple.vcxproj">
+      <Project>{1ACA60E0-228C-365B-9CEC-C143C55C01C0}</Project>
+      <Name>simple</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\splitview.vcxproj">
+      <Project>{F24AD03F-3F6A-3C5E-8E21-0B3279C42F89}</Project>
+      <Name>splitview</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\tearing.vcxproj">
+      <Project>{342682F5-6DDC-3CEE-AEC4-6B9D52FE65CC}</Project>
+      <Name>tearing</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\threads.vcxproj">
+      <Project>{9D41161E-0E6A-3E7B-9F55-2C665F3E0F29}</Project>
+      <Name>threads</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\timeout.vcxproj">
+      <Project>{A1CDF0EC-2C9F-3901-B261-66C7A3219B95}</Project>
+      <Name>timeout</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\title.vcxproj">
+      <Project>{E048792E-8BC0-3930-BCF4-3B5BFA4A2CAF}</Project>
+      <Name>title</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\vulkan.vcxproj">
+      <Project>{864D87CA-EDCC-3494-97DA-CF810BB409E0}</Project>
+      <Name>vulkan</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\examples\wave.vcxproj">
+      <Project>{B007A33E-82A3-3DCB-805D-EF4006B6D17D}</Project>
+      <Name>wave</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Project\CWorkspace\OpenGL0\glfw\proj\tests\windows.vcxproj">
+      <Project>{8859A0E7-276F-3DCA-BF95-A9C19801FCEE}</Project>
+      <Name>windows</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
