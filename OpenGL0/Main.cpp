@@ -5,23 +5,20 @@
 #include <GLFW/glfw3.h>
 #include <cassert>
 
+#if defined(_DEBUG) && defined(_WIN32)
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+#endif
+
 void KeyCallback(GLFWwindow* window, int key, int scan, int action,
 	int mode);
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
 
-void n_glShaderSource(GLuint shader, const char* source, const GLint* length) {
-	std::ifstream sourceFile(source, std::ios::in|std::ios::binary);
-	if (!sourceFile.is_open()) {
-		
-	}
-	glShaderSource(shader, 1, NULL, length);
-	sourceFile.close();
-}
-
-int main(int arg, char *args[]) {	
+int main(int arg, char *args[]) {
+	
 	if (!glfwInit()) {
 		std::cout << "GLFW init error!" << std::endl;
 		return -1;
-	}
+	} 
 	const GLFWvidmode* vidmode = glfwGetVideoMode(
 		glfwGetPrimaryMonitor());
 	glfwWindowHint(GLFW_RED_BITS, vidmode->redBits);
@@ -29,7 +26,7 @@ int main(int arg, char *args[]) {
 	glfwWindowHint(GLFW_GREEN_BITS, vidmode->greenBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, vidmode->refreshRate);
 	GLFWwindow* window = glfwCreateWindow(500, 500, "OpenGL Comeback",
-		NULL, NULL);
+		NULL, NULL);	
 	if (!window) {
 		glfwTerminate();
 		return -1;
@@ -42,8 +39,8 @@ int main(int arg, char *args[]) {
 	}
 	glfwSwapInterval(1);
 	glfwSetKeyCallback(window, &KeyCallback);
-	glViewport(0, 0, 500, 500);
-	glClearColor(1, 0, 1, 1);
+	glfwSetFramebufferSizeCallback(window, &FramebufferSizeCallback);
+	glClearColor(0, 0, 0, 1);
 	while (!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		glfwPollEvents();
@@ -61,3 +58,6 @@ void KeyCallback(GLFWwindow* window, int key, int scan, int action,
 	}
 }
 
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+}
