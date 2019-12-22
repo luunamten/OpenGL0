@@ -4,10 +4,38 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <cassert>
+#include <stdexcept>
+#include <sstream>
 
 #ifdef _WIN32
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
+
+
+#define _RUNTIME_ERROR(message) \
+	std::stringstream sstream;\
+	sstream << __FILE__ << ", " << __LINE__ << ": " << message; \
+	throw std::runtime_error(sstream.str())
+
+#define _EXCEPTION(message) \
+	std::stringstream sstream;\
+	sstream << __FILE__ << ", " << __LINE__ << ": " << message; \
+	throw std::exception(sstream.str())
+
+std::shared_ptr<char> GetShaderCode(const char* path) {
+	std::ifstream file{ path, std::ios::in | std::ios::binary };
+	if (!file.is_open()) {
+		assert(false && "File not found");
+		_RUNTIME_ERROR("File not found!");
+	}
+	file.seekg(0, file.end);
+	std::uint32_t fileSize = file.tellg();
+	file.seekg(0, file.beg);
+	char* data = new char[fileSize + 1];
+	file.read(data, fileSize);
+	data[fileSize] = NULL;
+	return std::shared_ptr<char>(data);
+}
 
 void KeyCallback(GLFWwindow* window, int key, int scan, int action,
 	int mode);
