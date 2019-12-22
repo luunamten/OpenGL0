@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 #include <cassert>
 
-#if defined(_DEBUG) && defined(_WIN32)
+#ifdef _WIN32
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
