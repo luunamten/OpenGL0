@@ -1,32 +1,92 @@
-#include <iostream>
 #include <fstream>
-#include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <cassert>
-#include <stdexcept>
-#include <sstream>
+#include "ExceptionMacro.hpp"
 
-#ifdef _WIN32
+#if defined(_WIN32) && defined(NDEBUG)
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
+//Data declaration section
+static GLFWwindow* gWindow = NULL;
 
-#define _RUNTIME_ERROR(message) \
-	std::stringstream sstream;\
-	sstream << __FILE__ << ", " << __LINE__ << ": " << message; \
-	throw std::runtime_error(sstream.str())
+//Functions declaration section
+void InitContext();
+void InitGL();
+void RunGameLoop();
+void CleanUpGLFW();
+std::shared_ptr<char> GetShaderCode(const char* path);
+void KeyCallback(GLFWwindow* window, int key, int scan, int action,
+	int mode);
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
 
-#define _EXCEPTION(message) \
-	std::stringstream sstream;\
-	sstream << __FILE__ << ", " << __LINE__ << ": " << message; \
-	throw std::exception(sstream.str())
+//Entry point section
+int main(int arg, char *args[]) {
+	try {
+		InitContext();
+		InitGL();
+		RunGameLoop();
+		CleanUpGLFW();
+	}
+	catch (const std::exception& exp) {
+		std::cout << exp.what() << std::endl;
+	}
+	return 0;
+}
+
+//Function defines section
+
+void InitContext() {
+	if (!glfwInit()) {
+		LT_RUNTIME_ERR("Can't init GLFW");
+	}
+	const GLFWvidmode* vidmode = glfwGetVideoMode(
+		glfwGetPrimaryMonitor());
+	glfwWindowHint(GLFW_RED_BITS, vidmode->redBits);
+	glfwWindowHint(GLFW_BLUE_BITS, vidmode->blueBits);
+	glfwWindowHint(GLFW_GREEN_BITS, vidmode->greenBits);
+	glfwWindowHint(GLFW_REFRESH_RATE, vidmode->refreshRate);
+	gWindow = glfwCreateWindow(500, 500, "OpenGL Comeback",
+		NULL, NULL);
+	if (!gWindow) {
+		glfwTerminate();
+		LT_RUNTIME_ERR("Can't create GLFW window!");
+	}
+	glfwMakeContextCurrent(gWindow);
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+		glfwDestroyWindow(gWindow);
+		glfwTerminate();
+		LT_RUNTIME_ERR("Can't load GL extension!");
+	}
+	glfwSwapInterval(1);
+	glfwSetKeyCallback(gWindow, &KeyCallback);
+	glfwSetFramebufferSizeCallback(gWindow, &FramebufferSizeCallback);
+}
+
+void InitGL() {
+	//Init OpenGL section
+	glClearColor(0, 0, 0, 1);
+}
+
+void RunGameLoop() {
+	while (!glfwWindowShouldClose(gWindow)) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		glfwPollEvents();
+		glfwSwapBuffers(gWindow);
+	}
+}
+
+void CleanUpGLFW() {
+	glfwDestroyWindow(gWindow);
+	glfwTerminate();
+}
 
 std::shared_ptr<char> GetShaderCode(const char* path) {
 	std::ifstream file{ path, std::ios::in | std::ios::binary };
 	if (!file.is_open()) {
 		assert(false && "File not found");
-		_RUNTIME_ERROR("File not found!");
+		LT_RUNTIME_ERR("File not found!");
 	}
 	file.seekg(0, file.end);
 	std::uint32_t fileSize = file.tellg();
@@ -35,48 +95,6 @@ std::shared_ptr<char> GetShaderCode(const char* path) {
 	file.read(data, fileSize);
 	data[fileSize] = NULL;
 	return std::shared_ptr<char>(data);
-}
-
-void KeyCallback(GLFWwindow* window, int key, int scan, int action,
-	int mode);
-void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
-
-int main(int arg, char *args[]) {
-	
-	if (!glfwInit()) {
-		std::cout << "GLFW init error!" << std::endl;
-		return -1;
-	} 
-	const GLFWvidmode* vidmode = glfwGetVideoMode(
-		glfwGetPrimaryMonitor());
-	glfwWindowHint(GLFW_RED_BITS, vidmode->redBits);
-	glfwWindowHint(GLFW_BLUE_BITS, vidmode->blueBits);
-	glfwWindowHint(GLFW_GREEN_BITS, vidmode->greenBits);
-	glfwWindowHint(GLFW_REFRESH_RATE, vidmode->refreshRate);
-	GLFWwindow* window = glfwCreateWindow(500, 500, "OpenGL Comeback",
-		NULL, NULL);	
-	if (!window) {
-		glfwTerminate();
-		return -1;
-	}
-	glfwMakeContextCurrent(window);
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-		glfwDestroyWindow(window);
-		glfwTerminate();
-		return -1;
-	}
-	glfwSwapInterval(1);
-	glfwSetKeyCallback(window, &KeyCallback);
-	glfwSetFramebufferSizeCallback(window, &FramebufferSizeCallback);
-	glClearColor(0, 0, 0, 1);
-	while (!glfwWindowShouldClose(window)) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		glfwPollEvents();
-		glfwSwapBuffers(window);
-	}
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	return 0;
 }
 
 void KeyCallback(GLFWwindow* window, int key, int scan, int action,
