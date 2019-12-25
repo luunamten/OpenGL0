@@ -8,11 +8,6 @@
 	sstream << __FILE__ << ", " << __LINE__ << ": " << message; \
 	throw std::runtime_error(sstream.str())
 
-#define LT_BAD_EXP(message) \
-	std::stringstream sstream;\
-	sstream << __FILE__ << ", " << __LINE__ << ": " << message; \
-	throw std::bad_exception(sstream.str())
-
 #define LT_EXCEPTION(message) \
 	std::stringstream sstream;\
 	sstream << __FILE__ << ", " << __LINE__ << ": " << message; \
