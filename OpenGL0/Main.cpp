@@ -253,6 +253,19 @@ void RunGameLoop()
 			glfwSwapBuffers(g_Window);
 		}
 	}
+
+	// shutdown the connection since we're done
+	iResult = shutdown(clientSocket, SD_SEND);
+	if (iResult == SOCKET_ERROR) {
+		printf("shutdown failed with error: %d\n", WSAGetLastError());
+		closesocket(clientSocket);
+		WSACleanup();
+		return;
+	}
+
+	// cleanup
+	closesocket(clientSocket);
+	WSACleanup();
 }
 
 void CleanUpGLFW() 
