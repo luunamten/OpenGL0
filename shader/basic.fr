@@ -1,5 +1,14 @@
 #version 440 core
 
+in vec3 fr_Normal;
+out vec4 color;
+
+uniform float u_AmbientFactor;
+uniform vec3 u_LightDir;
+uniform vec3 u_LightColor;
+uniform vec3 u_DefaultColor;
+
 void main() {
-	
+	float diffuseFactor = max(dot(-u_LightDir, fr_Normal), 0.0);
+	color = vec4((u_AmbientFactor + diffuseFactor) * u_DefaultColor * u_LightColor, 1.0); 
 }

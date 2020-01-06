@@ -88,10 +88,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)glad\include;$(SolutionDir)glfw\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)glad\include;$(SolutionDir)glfw\include;$(SolutionDir)assimp\include;$(SolutionDir)glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp\debug\assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,19 +132,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\glad\src\glad.c" />
+    <ClCompile Include="BasicShader.cpp" />
     <ClCompile Include="GLFWContext.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModelTool.cpp" />
+    <ClCompile Include="ShaderUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicShader.hpp" />
     <ClInclude Include="ExceptionMacro.hpp" />
     <ClInclude Include="GLFWContext.hpp" />
+    <ClInclude Include="ModelTool.hpp" />
+    <ClInclude Include="ShaderUtils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\glfw\proj\src\glfw.vcxproj">
       <Project>{3422baf2-2cf0-3ac2-86c5-33801958254f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\LTMath\LTMath.vcxproj">
-      <Project>{99e7f83b-ee99-4ac1-af34-e0b01119c416}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

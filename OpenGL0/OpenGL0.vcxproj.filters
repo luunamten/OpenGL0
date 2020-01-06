@@ -27,12 +27,30 @@
     <ClCompile Include="..\glad\src\glad.c">
       <Filter>Source Files\glad</Filter>
     </ClCompile>
+    <ClCompile Include="ModelTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFWContext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExceptionMacro.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTool.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicShader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderUtils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
