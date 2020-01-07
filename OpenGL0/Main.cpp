@@ -8,6 +8,7 @@
 #include <memory>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <thread>
 #include "ExceptionMacro.hpp"
 #include "ModelTool.hpp"
 #include "BasicShader.hpp"
@@ -26,6 +27,7 @@ static GLFWwindow* g_Window = NULL;
 static unsigned g_Vao;
 static unsigned g_NumVertices;
 static std::shared_ptr<BasicShader> g_BasicShader;
+static glm::mat4 rotationMat{ 1.f };
 
 //Functions declaration section
 void InitContext();
@@ -180,14 +182,18 @@ void RunGameLoop()
 		return;
 	}
 
-	// Accept a client socket
-	clientSocket = accept(listenSocket, NULL, NULL);
-	if (clientSocket == INVALID_SOCKET) {
-		printf("accept failed: %d\n", WSAGetLastError());
-		closesocket(clientSocket);
-		WSACleanup();
-		return;
-	}
+	std::thread socketBackground([&clientSocket, &listenSocket]{
+		// Accept a client socket
+		while (true) {
+			clientSocket = accept(listenSocket, NULL, NULL);
+			if (clientSocket == INVALID_SOCKET) {
+				printf("accept failed: %d\n", WSAGetLastError());
+				closesocket(clientSocket);
+				WSACleanup();
+				return;
+			}
+		}
+	});
 
 	int recvbuflen = sizeof(float) * 9;
 	char recvbuf[sizeof(float) * 9];
@@ -196,63 +202,65 @@ void RunGameLoop()
 	{
 		//Socket
 		iResult = recv(clientSocket, recvbuf, recvbuflen, 0);
+
 		if (iResult > 0) {
 			float* matrix = (float*)recvbuf;
-
-			//Graphics
-			glEnable(GL_DEPTH_TEST);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glBindVertexArray(g_Vao);
-			g_BasicShader->UseProgram();
-			//math
-			glm::mat4 lookAtMat = glm::lookAt(
-				glm::vec3{ 0.f, -2.f, 3.f },
-				glm::vec3{ 0.f, 0.f, 2.f },
-				glm::vec3{ 0.f, 1.f, 0.f }
-			);
-			glm::mat4 projectionMat = glm::perspective(
-				glm::radians(90.f), 1.f, 0.024f, 1000.f
-			);
-			static float angle = 0;
-			glm::mat4 rotationMat{
+			rotationMat = {
 				matrix[0], matrix[3], matrix[6], 0.f,
 				matrix[1], matrix[4], matrix[7], 0.f,
 				matrix[2], matrix[5], matrix[8], 0.f,
 				0.f, 0.f, 0.f, 1.f
 			};
-			glm::mat4 transformMat = projectionMat * lookAtMat * rotationMat;
-			glm::vec3 lightDir = glm::normalize(glm::vec3{ -1.f, 0.f, -2.f });
-			glm::vec3 lightColor{ 1.f, 1.f, 1.f };
-			glm::vec3 defaultColor{ 1.f, 0.f, 1.f };
-			//uniform
-			glUniformMatrix4fv(
-				g_BasicShader->u_TransformMat(),
-				1, GL_FALSE, (float*)& transformMat
-			);
-			glUniformMatrix4fv(
-				g_BasicShader->u_RotationMat(),
-				1, GL_FALSE, (float*)& rotationMat
-			);
-			glUniform1f(g_BasicShader->u_AmbientFactor(), 0.2f);
-			glUniform3fv(
-				g_BasicShader->u_LightDir(), 1,
-				(float*)& lightDir
-			);
-			glUniform3fv(
-				g_BasicShader->u_LightColor(), 1,
-				(float*)& lightColor
-			);
-			glUniform3fv(
-				g_BasicShader->u_DefaultColor(), 1,
-				(float*)& defaultColor
-			);
-			glDrawArrays(GL_TRIANGLES, 0, g_NumVertices);
-			g_BasicShader->UnUseProgram();
-			glBindVertexArray(0);
-			glDisable(GL_DEPTH_TEST);
-			glfwPollEvents();
-			glfwSwapBuffers(g_Window);
 		}
+
+		//Graphics
+		glEnable(GL_DEPTH_TEST);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glBindVertexArray(g_Vao);
+		g_BasicShader->UseProgram();
+		//math
+		glm::mat4 lookAtMat = glm::lookAt(
+			glm::vec3{ 0.f, -2.f, 3.f },
+			glm::vec3{ 0.f, 0.f, 2.f },
+			glm::vec3{ 0.f, 1.f, 0.f }
+		);
+		glm::mat4 projectionMat = glm::perspective(
+			glm::radians(90.f), 1.f, 0.024f, 1000.f
+		);
+		static float angle = 0;
+
+		glm::mat4 transformMat = projectionMat * lookAtMat * rotationMat;
+		glm::vec3 lightDir = glm::normalize(glm::vec3{ -1.f, 0.f, -2.f });
+		glm::vec3 lightColor{ 1.f, 1.f, 1.f };
+		glm::vec3 defaultColor{ 1.f, 0.f, 1.f };
+		//uniform
+		glUniformMatrix4fv(
+			g_BasicShader->u_TransformMat(),
+			1, GL_FALSE, (float*)& transformMat
+		);
+		glUniformMatrix4fv(
+			g_BasicShader->u_RotationMat(),
+			1, GL_FALSE, (float*)& rotationMat
+		);
+		glUniform1f(g_BasicShader->u_AmbientFactor(), 0.2f);
+		glUniform3fv(
+			g_BasicShader->u_LightDir(), 1,
+			(float*)& lightDir
+		);
+		glUniform3fv(
+			g_BasicShader->u_LightColor(), 1,
+			(float*)& lightColor
+		);
+		glUniform3fv(
+			g_BasicShader->u_DefaultColor(), 1,
+			(float*)& defaultColor
+		);
+		glDrawArrays(GL_TRIANGLES, 0, g_NumVertices);
+		g_BasicShader->UnUseProgram();
+		glBindVertexArray(0);
+		glDisable(GL_DEPTH_TEST);
+		glfwPollEvents();
+		glfwSwapBuffers(g_Window);
 	}
 
 	// shutdown the connection since we're done
