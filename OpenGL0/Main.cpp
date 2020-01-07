@@ -97,11 +97,14 @@ void InitGL()
 	//Object
 	std::vector<float> coords;
 	std::vector<float> normals;
+	std::vector<float> colors;
 	ModelTool modelReader{"../model/sword.fbx"};
-	modelReader.loadModelCN(coords, normals);
+	modelReader.LoadModelCN(coords, normals);
+	modelReader.LoadModelM3V(colors, ModelTool::Material::diffuse);
 	std::size_t coordBytes = coords.size() * sizeof(float);
 	std::size_t normalBytes = normals.size() * sizeof(float);
-	std::size_t totalSize = coordBytes + normalBytes;
+	std::size_t colorBytes = colors.size() * sizeof(float);
+	std::size_t totalSize = coordBytes + normalBytes + colorBytes;
 	g_NumVertices = coords.size() / 3;
 	unsigned int vbo;
 	glGenVertexArrays(1, &g_Vao);
@@ -111,10 +114,13 @@ void InitGL()
 	glBufferData(GL_ARRAY_BUFFER, totalSize, NULL, GL_STATIC_DRAW);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, coordBytes, coords.data());
 	glBufferSubData(GL_ARRAY_BUFFER, coordBytes, normalBytes, normals.data());
+	glBufferSubData(GL_ARRAY_BUFFER, coordBytes + normalBytes, colorBytes, colors.data());
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)coordBytes);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)(coordBytes + normalBytes));
 	glEnableVertexAttribArray(0); //vertex coord
 	glEnableVertexAttribArray(1); //vertex normal
+	glEnableVertexAttribArray(2); //vertex color
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
@@ -232,7 +238,6 @@ void RunGameLoop()
 		glm::mat4 transformMat = projectionMat * lookAtMat * rotationMat;
 		glm::vec3 lightDir = glm::normalize(glm::vec3{ -1.f, 0.f, -2.f });
 		glm::vec3 lightColor{ 1.f, 1.f, 1.f };
-		glm::vec3 defaultColor{ 1.f, 0.f, 1.f };
 		//uniform
 		glUniformMatrix4fv(
 			g_BasicShader->u_TransformMat(),
@@ -250,10 +255,6 @@ void RunGameLoop()
 		glUniform3fv(
 			g_BasicShader->u_LightColor(), 1,
 			(float*)& lightColor
-		);
-		glUniform3fv(
-			g_BasicShader->u_DefaultColor(), 1,
-			(float*)& defaultColor
 		);
 		glDrawArrays(GL_TRIANGLES, 0, g_NumVertices);
 		g_BasicShader->UnUseProgram();

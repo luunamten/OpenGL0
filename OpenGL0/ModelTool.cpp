@@ -15,7 +15,7 @@ ModelTool::ModelTool(std::string path) {
 }
 
 /*Load model chi lay vertex Coordinates*/
-void ModelTool::loadModelC(
+void ModelTool::LoadModelC(
 	std::vector<float> &coordVector)
 {
 	const aiScene *scene = this->importer.GetScene();
@@ -41,7 +41,7 @@ void ModelTool::loadModelC(
 	}
 }
 
-void ModelTool::loadModelN(std::vector<float>& normalVector)
+void ModelTool::LoadModelN(std::vector<float>& normalVector)
 {
 	const aiScene *scene = this->importer.GetScene();
 	aiMesh **meshes = scene->mMeshes;
@@ -67,7 +67,7 @@ void ModelTool::loadModelN(std::vector<float>& normalVector)
 	}
 }
 
-void ModelTool::loadModelT(std::vector<float>& texVector)
+void ModelTool::LoadModelT(std::vector<float>& texVector)
 {
 	const aiScene *scene = this->importer.GetScene();
 	aiMesh **meshes = scene->mMeshes;
@@ -94,7 +94,7 @@ void ModelTool::loadModelT(std::vector<float>& texVector)
 }
 
 /*Load model lay vertex Coordinates, Normals, Texture coordinates*/
-void ModelTool::loadModelCNT( 
+void ModelTool::LoadModelCNT( 
 	std::vector<float>& coordVector, 
 	std::vector<float>& normalVector, 
 	std::vector<float>& texVector)
@@ -136,7 +136,7 @@ void ModelTool::loadModelCNT(
 }
 
 /*Load model lay vertex Coordinates, Normals, 2D Texture coordinates*/
-void ModelTool::loadModelCNT2D(
+void ModelTool::LoadModelCNT2D(
 	std::vector<float>& coordVector,
 	std::vector<float>& normalVector,
 	std::vector<float>& texVector)
@@ -176,68 +176,8 @@ void ModelTool::loadModelCNT2D(
 	}
 }
 
-/*Lay material properties cua model co dang AI_MATKEY_COLOR_XXX aiVector3D*/
-void ModelTool::loadModelM3V(
-	std::vector<float>& propertyValueVector,
-	const char * pKey, int type, int idx)
-{
-	const aiScene *scene = this->importer.GetScene();
-	aiMesh **meshes = scene->mMeshes;
-	aiMaterial **materials = scene->mMaterials;
-	int numMeshes = scene->mNumMeshes;
-	/*Luu tru cac coord, normal cua vertex trong vector<float>*/
-	for (int meshIndex = 0; meshIndex < numMeshes; meshIndex++) {
-		aiMesh *mesh = meshes[meshIndex];
-		aiFace *faces = mesh->mFaces;
-		aiMaterial *material = materials[mesh->mMaterialIndex];
-		aiColor3D color;
-		int numFaces = mesh->mNumFaces;
-		material->Get(pKey, type, idx, color);
-		for (int faceIndex = 0; faceIndex < numFaces; faceIndex++) {
-			aiFace face = faces[faceIndex];
-			int numVertexIndices = face.mNumIndices;
-			for (int vertexIndexInFace = 0; vertexIndexInFace < numVertexIndices; vertexIndexInFace++) {
-				propertyValueVector.push_back(color.r);
-				propertyValueVector.push_back(color.g);
-				propertyValueVector.push_back(color.b);
-				
-			}
-		}
-	}
-}
-
-/*Lay material properties cua model co dang AI_MATKEY_COLOR_XXX aiVector4D*/
-void ModelTool::loadModelM4V(
-	std::vector<float>& propertyValueVector,
-	const char * pKey, int type, int idx)
-{
-	const aiScene *scene = this->importer.GetScene();
-	aiMesh **meshes = scene->mMeshes;
-	aiMaterial **materials = scene->mMaterials;
-	int numMeshes = scene->mNumMeshes;
-	/*Luu tru cac coord, normal cua vertex trong vector<float>*/
-	for (int meshIndex = 0; meshIndex < numMeshes; meshIndex++) {
-		aiMesh *mesh = meshes[meshIndex];
-		aiFace *faces = mesh->mFaces;
-		aiMaterial *material = materials[mesh->mMaterialIndex];
-		aiColor4D color;
-		int numFaces = mesh->mNumFaces;
-		material->Get(pKey, type, idx, color);
-		for (int faceIndex = 0; faceIndex < numFaces; faceIndex++) {
-			aiFace face = faces[faceIndex];
-			int numVertexIndices = face.mNumIndices;
-			for (int vertexIndexInFace = 0; vertexIndexInFace < numVertexIndices; vertexIndexInFace++) {
-				propertyValueVector.push_back(color.r);
-				propertyValueVector.push_back(color.g);
-				propertyValueVector.push_back(color.b);
-				propertyValueVector.push_back(color.a);
-			}
-		}
-	}
-}
-
 /*Load model lay vertex Coordinates, Normals*/
-void ModelTool::loadModelCN(
+void ModelTool::LoadModelCN(
 	std::vector<float> &coordVector,
 	std::vector<float> &normalVector)
 {
@@ -270,3 +210,96 @@ void ModelTool::loadModelCN(
 		}
 	}
 }
+
+void ModelTool::LoadModelM3V(std::vector<float>& propertyValueVector, const Material& mType)
+{
+	LoadModelMaterial(propertyValueVector, mType, &ModelTool::P_LoadModelM3V);
+}
+
+void ModelTool::LoadModelM4V(std::vector<float>& propertyValueVector, const Material& mType)
+{
+	LoadModelMaterial(propertyValueVector, mType, &ModelTool::P_LoadModelM4V);
+}
+
+/*Lay material properties cua model co dang AI_MATKEY_COLOR_XXX aiVector3D*/
+void ModelTool::P_LoadModelM3V(
+	std::vector<float>& propertyValueVector,
+	const char* pKey, int type, int idx)
+{
+	const aiScene* scene = this->importer.GetScene();
+	aiMesh** meshes = scene->mMeshes;
+	aiMaterial** materials = scene->mMaterials;
+	int numMeshes = scene->mNumMeshes;
+	/*Luu tru cac coord, normal cua vertex trong vector<float>*/
+	for (int meshIndex = 0; meshIndex < numMeshes; meshIndex++) {
+		aiMesh* mesh = meshes[meshIndex];
+		aiFace* faces = mesh->mFaces;
+		aiMaterial* material = materials[mesh->mMaterialIndex];
+		aiColor3D color;
+		int numFaces = mesh->mNumFaces;
+		material->Get(pKey, type, idx, color);
+		for (int faceIndex = 0; faceIndex < numFaces; faceIndex++) {
+			aiFace face = faces[faceIndex];
+			int numVertexIndices = face.mNumIndices;
+			for (int vertexIndexInFace = 0; vertexIndexInFace < numVertexIndices; vertexIndexInFace++) {
+				propertyValueVector.push_back(color.r);
+				propertyValueVector.push_back(color.g);
+				propertyValueVector.push_back(color.b);
+			}
+		}
+	}
+}
+
+/*Lay material properties cua model co dang AI_MATKEY_COLOR_XXX aiVector4D*/
+void ModelTool::P_LoadModelM4V(
+	std::vector<float>& propertyValueVector,
+	const char* pKey, int type, int idx)
+{
+	const aiScene* scene = this->importer.GetScene();
+	aiMesh** meshes = scene->mMeshes;
+	aiMaterial** materials = scene->mMaterials;
+	int numMeshes = scene->mNumMeshes;
+	/*Luu tru cac coord, normal cua vertex trong vector<float>*/
+	for (int meshIndex = 0; meshIndex < numMeshes; meshIndex++) {
+		aiMesh* mesh = meshes[meshIndex];
+		aiFace* faces = mesh->mFaces;
+		aiMaterial* material = materials[mesh->mMaterialIndex];
+		aiColor4D color;
+		int numFaces = mesh->mNumFaces;
+		material->Get(pKey, type, idx, color);
+		for (int faceIndex = 0; faceIndex < numFaces; faceIndex++) {
+			aiFace face = faces[faceIndex];
+			int numVertexIndices = face.mNumIndices;
+			for (int vertexIndexInFace = 0; vertexIndexInFace < numVertexIndices; vertexIndexInFace++) {
+				propertyValueVector.push_back(color.r);
+				propertyValueVector.push_back(color.g);
+				propertyValueVector.push_back(color.b);
+				propertyValueVector.push_back(color.a);
+			}
+		}
+	}
+}
+
+void ModelTool::LoadModelMaterial(
+	std::vector<float>& propertyValueVector, const Material& mType,
+	void(ModelTool::*executor)
+	(
+		std::vector<float>&,
+		const char* pKey, int type, int idx
+	)
+)
+{
+	switch (mType)
+	{
+	case Material::ambient:
+		(this->*executor)(propertyValueVector, AI_MATKEY_COLOR_AMBIENT);
+		break;
+	case Material::diffuse:
+		(this->*executor)(propertyValueVector, AI_MATKEY_COLOR_DIFFUSE);
+		break;
+	case Material::specular:
+		(this->*executor)(propertyValueVector, AI_MATKEY_COLOR_SPECULAR);
+		break;
+	}
+}
+

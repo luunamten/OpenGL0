@@ -8,7 +8,6 @@ private:
 	int mu_AmbientFactor;
 	int mu_LightDir;
 	int mu_LightColor;
-	int mu_DefaultColor;
 public:
 	BasicShader(const char* vtPath, const char* frPath);
 	~BasicShader();
@@ -21,6 +20,5 @@ public:
 	int u_AmbientFactor() const;
 	int u_LightDir() const;
 	int u_LightColor() const;
-	int u_DefaultColor() const;
 };
 

@@ -6,33 +6,53 @@
 #include <assimp\Importer.hpp>
 
 class ModelTool {
-private:
-	Assimp::Importer importer;
-public:	
+public:
+	enum class Material {
+		ambient, diffuse, specular
+	};	
+
 	ModelTool(std::string path);
 	~ModelTool() = default;
-	void loadModelC(
+	void LoadModelC(
 		std::vector<float> &coordVector);
-	void loadModelN(
+	void LoadModelN(
 		std::vector<float> &coordVector);
-	void loadModelT(
+	void LoadModelT(
 		std::vector<float> &coordVector);
-	void loadModelCN(
+	void LoadModelCN(
 		std::vector<float> &coordVector,
 		std::vector<float> &normalVector);
-	void loadModelCNT(
+	void LoadModelCNT(
 		std::vector<float> &coordVector,
 		std::vector<float> &normalVector,
 		std::vector<float> &texVector);
-	void loadModelCNT2D(
+	void LoadModelCNT2D(
 		std::vector<float> &coordVector,
 		std::vector<float> &normalVector,
 		std::vector<float> &texVector);
-	void loadModelM3V(
+	void LoadModelM3V(
 		std::vector<float>& propertyValueVector,
-		const char * pKey, int a1, int a2);
-	void loadModelM4V(
+		const Material& mType);
+	void LoadModelM4V(
 		std::vector<float>& propertyValueVector,
-		const char * pKey, int a1, int a2);
+		const Material& mType);
+
+private:
+	void P_LoadModelM3V(
+		std::vector<float>& propertyValueVector,
+		const char* pKey, int a1, int a2);
+	void P_LoadModelM4V(
+		std::vector<float>& propertyValueVector,
+		const char* pKey, int a1, int a2);
+	void LoadModelMaterial(
+		std::vector<float>& propertyValueVector, const Material& mType,
+		void(ModelTool::* executor)
+		(
+			std::vector<float>&,
+			const char* pKey, int type, int idx
+		)
+	);
+
+	Assimp::Importer importer;
 };
 #endif

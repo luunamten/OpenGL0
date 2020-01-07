@@ -9,8 +9,7 @@ BasicShader::BasicShader(const char* vtPath, const char* frPath):
 	mu_RotationMat(-1),
 	mu_AmbientFactor(-1),
 	mu_LightDir(-1),
-	mu_LightColor(-1),
-	mu_DefaultColor(-1)
+	mu_LightColor(-1)
 {
 	InitShader(vtPath, frPath);
 }
@@ -65,7 +64,7 @@ void BasicShader::InitShader(const char* vtPath, const char* frPath)
 	log = compileOrLinkLog.get();
 	if (log)
 	{
-		LT_ASSERT(false, log);
+ 		LT_ASSERT(false, log);
 		LT_RUNTIME_ERR(log);
 	}
 
@@ -83,14 +82,12 @@ void BasicShader::InitShader(const char* vtPath, const char* frPath)
 	mu_AmbientFactor = glGetUniformLocation(m_Program, "u_AmbientFactor");
 	mu_LightDir = glGetUniformLocation(m_Program, "u_LightDir");
 	mu_LightColor = glGetUniformLocation(m_Program, "u_LightColor");
-	mu_DefaultColor = glGetUniformLocation(m_Program, "u_DefaultColor");
 	
 	std::cout << mu_TransformMat << std::endl;
 	std::cout << mu_RotationMat << std::endl;
 	std::cout << mu_AmbientFactor << std::endl;
 	std::cout << mu_LightDir << std::endl;
 	std::cout << mu_LightColor << std::endl;
-	std::cout << mu_DefaultColor << std::endl;
 
 	glUseProgram(0);
 }
@@ -133,9 +130,4 @@ int BasicShader::u_LightDir() const
 int BasicShader::u_LightColor() const
 {
 	return mu_LightColor;
-}
-
-int BasicShader::u_DefaultColor() const
-{
-	return mu_DefaultColor;
 }
