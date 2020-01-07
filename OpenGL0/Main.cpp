@@ -5,6 +5,7 @@
 #include <GLFW/glfw3.h>
 #include <cassert>
 #include <vector>
+#include <memory>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "ExceptionMacro.hpp"
