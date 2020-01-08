@@ -71,6 +71,7 @@ void InitContext()
 	glfwWindowHint(GLFW_BLUE_BITS, vidmode->blueBits);
 	glfwWindowHint(GLFW_GREEN_BITS, vidmode->greenBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, vidmode->refreshRate);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 	g_Window = glfwCreateWindow(700, 700, "OpenGL Comeback",
 		NULL, NULL);
 	if (!g_Window) 
@@ -98,7 +99,7 @@ void InitGL()
 	std::vector<float> coords;
 	std::vector<float> normals;
 	std::vector<float> colors;
-	ModelTool modelReader{"../model/sword.fbx"};
+	ModelTool modelReader{"../model/sword2.fbx"};
 	modelReader.LoadModelCN(coords, normals);
 	modelReader.LoadModelM3V(colors, ModelTool::Material::diffuse);
 	std::size_t coordBytes = coords.size() * sizeof(float);
