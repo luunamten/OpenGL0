@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <thread>
+#include <chrono>
 #include "ExceptionMacro.hpp"
 #include "ModelTool.hpp"
 #include "BasicShader.hpp"
@@ -23,7 +24,7 @@
 #endif
 
 //Data declaration section
-static GLFWwindow* g_Window = NULL;
+static GLFWwindow * g_Window = NULL;
 static unsigned g_Vao;
 static unsigned g_NumVertices;
 static std::shared_ptr<BasicShader> g_BasicShader;
@@ -41,16 +42,16 @@ void KeyCallback(GLFWwindow* window, int key, int scan, int action,
 void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
 
 //Entry point section
-int main(int arg, char *args[]) 
+int main(int arg, char* args[])
 {
-	try 
+	try
 	{
 		InitContext();
 		InitGL();
 		RunGameLoop();
 		CleanUpGLFW();
 	}
-	catch (const std::exception& exp) 
+	catch (const std::exception& exp)
 	{
 		std::cout << exp.what() << std::endl;
 	}
@@ -59,9 +60,9 @@ int main(int arg, char *args[])
 
 //Function defines section
 
-void InitContext() 
+void InitContext()
 {
-	if (!glfwInit()) 
+	if (!glfwInit())
 	{
 		LT_RUNTIME_ERR("Can't init GLFW");
 	}
@@ -74,13 +75,13 @@ void InitContext()
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	g_Window = glfwCreateWindow(700, 700, "OpenGL Comeback",
 		NULL, NULL);
-	if (!g_Window) 
+	if (!g_Window)
 	{
 		glfwTerminate();
 		LT_RUNTIME_ERR("Can't create GLFW window!");
 	}
 	glfwMakeContextCurrent(g_Window);
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) 
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		glfwDestroyWindow(g_Window);
 		glfwTerminate();
@@ -91,7 +92,7 @@ void InitContext()
 	glfwSetFramebufferSizeCallback(g_Window, &FramebufferSizeCallback);
 }
 
-void InitGL() 
+void InitGL()
 {
 	InitShader();
 	glClearColor(0, 0, 0, 1);
@@ -99,7 +100,7 @@ void InitGL()
 	std::vector<float> coords;
 	std::vector<float> normals;
 	std::vector<float> colors;
-	ModelTool modelReader{"../model/sword2.fbx"};
+	ModelTool modelReader{ "../model/sword2.fbx" };
 	modelReader.LoadModelCN(coords, normals);
 	modelReader.LoadModelM3V(colors, ModelTool::Material::diffuse);
 	std::size_t coordBytes = coords.size() * sizeof(float);
@@ -126,7 +127,7 @@ void InitGL()
 	glBindVertexArray(0);
 }
 
-void InitShader() 
+void InitShader()
 {
 	g_BasicShader = std::make_shared<BasicShader>(
 		"../shader/basic.vt",
@@ -134,13 +135,15 @@ void InitShader()
 		);
 }
 
-void RunGameLoop() 
+void RunGameLoop()
 {
 	int iResult;
+	bool shouldThreadContinue = true;
 	struct addrinfo* result = NULL, * ptr = NULL, hints;
 	WSADATA wsaData;
 	SOCKET listenSocket = INVALID_SOCKET;
 	SOCKET clientSocket = INVALID_SOCKET;
+
 
 	// Initialize Winsock
 	iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -188,24 +191,23 @@ void RunGameLoop()
 		WSACleanup();
 		return;
 	}
-
-	std::thread socketBackground([&clientSocket, &listenSocket]{
+	std::thread socketBackground([&] {
 		// Accept a client socket
-		while (true) {
+		while (shouldThreadContinue) {
 			clientSocket = accept(listenSocket, NULL, NULL);
 			if (clientSocket == INVALID_SOCKET) {
 				printf("accept failed: %d\n", WSAGetLastError());
 				closesocket(clientSocket);
-				WSACleanup();
 				return;
 			}
 		}
 	});
+	socketBackground.detach();
 
 	int recvbuflen = sizeof(float) * 9;
 	char recvbuf[sizeof(float) * 9];
 
-	while (!glfwWindowShouldClose(g_Window)) 
+	while (!glfwWindowShouldClose(g_Window))
 	{
 		//Socket
 		iResult = recv(clientSocket, recvbuf, recvbuflen, 0);
@@ -265,6 +267,7 @@ void RunGameLoop()
 		glfwSwapBuffers(g_Window);
 	}
 
+	shouldThreadContinue = false;
 	// shutdown the connection since we're done
 	iResult = shutdown(clientSocket, SD_SEND);
 	if (iResult == SOCKET_ERROR) {
@@ -273,29 +276,28 @@ void RunGameLoop()
 		WSACleanup();
 		return;
 	}
-
 	// cleanup
 	closesocket(clientSocket);
 	WSACleanup();
 }
 
-void CleanUpGLFW() 
+void CleanUpGLFW()
 {
 	glfwDestroyWindow(g_Window);
-	glfwTerminate(); 
+	glfwTerminate();
 }
 
 
 void KeyCallback(GLFWwindow* window, int key, int scan, int action,
-	int mode) 
+	int mode)
 {
-	if (key == GLFW_KEY_ESCAPE) 
+	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
 }
 
-void FramebufferSizeCallback(GLFWwindow* window, int width, int height) 
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
