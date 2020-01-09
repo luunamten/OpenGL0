@@ -224,6 +224,8 @@ void RunGameLoop()
 
 		//Graphics
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindVertexArray(g_Vao);
 		g_BasicShader->UseProgram();
@@ -236,32 +238,31 @@ void RunGameLoop()
 		glm::mat4 projectionMat = glm::perspective(
 			glm::radians(90.f), 1.f, 0.024f, 1000.f
 		);
-		static float angle = 0;
-
 		glm::mat4 transformMat = projectionMat * lookAtMat * rotationMat;
 		glm::vec3 lightDir = glm::normalize(glm::vec3{ -1.f, 0.f, -2.f });
 		glm::vec3 lightColor{ 1.f, 1.f, 1.f };
 		//uniform
 		glUniformMatrix4fv(
 			g_BasicShader->u_TransformMat(),
-			1, GL_FALSE, (float*)& transformMat
+			1, GL_FALSE, (float*)&transformMat
 		);
 		glUniformMatrix4fv(
 			g_BasicShader->u_RotationMat(),
-			1, GL_FALSE, (float*)& rotationMat
+			1, GL_FALSE, (float*)&rotationMat
 		);
 		glUniform1f(g_BasicShader->u_AmbientFactor(), 0.2f);
 		glUniform3fv(
 			g_BasicShader->u_LightDir(), 1,
-			(float*)& lightDir
+			(float*)&lightDir
 		);
 		glUniform3fv(
 			g_BasicShader->u_LightColor(), 1,
-			(float*)& lightColor
+			(float*)&lightColor
 		);
 		glDrawArrays(GL_TRIANGLES, 0, g_NumVertices);
 		g_BasicShader->UnUseProgram();
 		glBindVertexArray(0);
+		glDisable(GL_CULL_FACE);
 		glDisable(GL_DEPTH_TEST);
 		glfwPollEvents();
 		glfwSwapBuffers(g_Window);
