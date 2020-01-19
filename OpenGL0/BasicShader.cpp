@@ -82,13 +82,9 @@ void BasicShader::InitShader(const char* vtPath, const char* frPath)
 	mu_AmbientFactor = glGetUniformLocation(m_Program, "u_AmbientFactor");
 	mu_LightDir = glGetUniformLocation(m_Program, "u_LightDir");
 	mu_LightColor = glGetUniformLocation(m_Program, "u_LightColor");
-	
-	std::cout << mu_TransformMat << std::endl;
-	std::cout << mu_RotationMat << std::endl;
-	std::cout << mu_AmbientFactor << std::endl;
-	std::cout << mu_LightDir << std::endl;
-	std::cout << mu_LightColor << std::endl;
-
+	mu_LightIntensity = glGetUniformLocation(m_Program, "u_LightIntensity");
+	mu_Shininess = glGetUniformLocation(m_Program, "u_Shininess");
+	mu_EyePosition = glGetUniformLocation(m_Program, "u_EyePosition");
 	glUseProgram(0);
 }
 
@@ -130,4 +126,19 @@ int BasicShader::u_LightDir() const
 int BasicShader::u_LightColor() const
 {
 	return mu_LightColor;
+}
+
+int BasicShader::u_LightIntensity() const
+{
+	return mu_LightIntensity;
+}
+
+int BasicShader::u_Shininess() const
+{
+	return mu_Shininess;
+}
+
+int BasicShader::u_EyePosition() const
+{
+	return mu_EyePosition;
 }

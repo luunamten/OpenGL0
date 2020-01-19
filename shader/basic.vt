@@ -5,6 +5,7 @@ layout(location = 1) in vec3 vt_Normal;
 layout(location = 2) in vec3 vt_Color;
 
 out vec3 fr_Normal;
+out vec3 fr_Coord;
 out vec3 fr_Color;
 
 uniform mat4 u_TransformMat;
@@ -12,6 +13,7 @@ uniform mat4 u_RotationMat;
 
 void main() {
 	fr_Normal = (u_RotationMat * vec4(vt_Normal, 1.0)).xyz;
+	fr_Coord = (u_RotationMat * vt_Coord).xyz;
 	fr_Color = vt_Color;
 	gl_Position = u_TransformMat * vt_Coord;
 }

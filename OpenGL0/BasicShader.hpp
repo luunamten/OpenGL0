@@ -8,6 +8,9 @@ private:
 	int mu_AmbientFactor;
 	int mu_LightDir;
 	int mu_LightColor;
+	int mu_LightIntensity;
+	int mu_Shininess;
+	int mu_EyePosition;
 public:
 	BasicShader(const char* vtPath, const char* frPath);
 	~BasicShader();
@@ -20,5 +23,8 @@ public:
 	int u_AmbientFactor() const;
 	int u_LightDir() const;
 	int u_LightColor() const;
+	int u_LightIntensity() const;
+	int u_Shininess() const;
+	int u_EyePosition() const;
 };
 

@@ -1,6 +1,7 @@
 #version 440 core
 
 in vec3 fr_Normal;
+in vec3 fr_Coord;
 in vec3 fr_Color;
 
 out vec4 color;
@@ -8,8 +9,20 @@ out vec4 color;
 uniform float u_AmbientFactor;
 uniform vec3 u_LightDir;
 uniform vec3 u_LightColor;
+uniform float u_LightIntensity;
+uniform float u_Shininess;
+uniform vec3 u_EyePosition;
+
+const int diffuseLevels = 3;
+const float diffusePart = 1.0 / diffuseLevels;
+const float noSpecular = 0.9;
 
 void main() {
-	float diffuseFactor = max(dot(-u_LightDir, fr_Normal), 0.0);
-	color = vec4((u_AmbientFactor + diffuseFactor) * fr_Color * u_LightColor, 1.0); 
+	vec3 eyeDirection = normalize(u_EyePosition - fr_Coord);
+	vec3 halfVec = normalize(-u_LightDir + eyeDirection);
+	float cosineDiffuse = max(dot(-u_LightDir, fr_Normal), 0.0);
+	float diffuseFactor = floor(cosineDiffuse * diffuseLevels) * diffusePart; 
+	float cosineSpecular = pow(max(dot(fr_Normal, halfVec), 0.0), u_Shininess);
+	float specular = (cosineSpecular < noSpecular)? 0.0 : 1.0;
+	color = vec4((u_AmbientFactor + diffuseFactor + specular) * u_LightColor * fr_Color * u_LightIntensity, 1.0); 
 }

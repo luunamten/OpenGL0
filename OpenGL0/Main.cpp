@@ -95,12 +95,13 @@ void InitContext()
 void InitGL()
 {
 	InitShader();
-	glClearColor(0, 0, 0, 1);
+	glClearColor(1, 1, 1, 1);
+	glLineWidth(3);
 	//Object
 	std::vector<float> coords;
 	std::vector<float> normals;
 	std::vector<float> colors;
-	ModelTool modelReader{ "../model/sword2.fbx" };
+	ModelTool modelReader{ "../model/dragon.fbx" };
 	modelReader.LoadModelCN(coords, normals);
 	modelReader.LoadModelM3V(colors, ModelTool::Material::diffuse);
 	std::size_t coordBytes = coords.size() * sizeof(float);
@@ -139,6 +140,8 @@ void RunGameLoop()
 {
 	int iResult;
 	bool shouldThreadContinue = true;
+	int recvbuflen = sizeof(float) * 9;
+	char recvbuf[sizeof(float) * 9];
 	struct addrinfo* result = NULL, * ptr = NULL, hints;
 	WSADATA wsaData;
 	SOCKET listenSocket = INVALID_SOCKET;
@@ -204,14 +207,23 @@ void RunGameLoop()
 	});
 	socketBackground.detach();
 
-	int recvbuflen = sizeof(float) * 9;
-	char recvbuf[sizeof(float) * 9];
+	std::thread dataThreadBackground([&] {
+		while (shouldThreadContinue) {
+			iResult = recv(clientSocket, recvbuf, recvbuflen, 0);
+		}
+	});
+	dataThreadBackground.detach();
 
 	while (!glfwWindowShouldClose(g_Window))
 	{
-		//Socket
-		iResult = recv(clientSocket, recvbuf, recvbuflen, 0);
-
+		//Graphics
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glBindVertexArray(g_Vao);
+		g_BasicShader->UseProgram();
+		//math
 		if (iResult > 0) {
 			float* matrix = (float*)recvbuf;
 			rotationMat = {
@@ -222,25 +234,18 @@ void RunGameLoop()
 			};
 		}
 
-		//Graphics
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
-		glCullFace(GL_BACK);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glBindVertexArray(g_Vao);
-		g_BasicShader->UseProgram();
-		//math
+		glm::vec3 lightDir = glm::normalize(glm::vec3{ -1.f, 4.f, -2.f });
+		glm::vec3 lightColor{ 1.f, 1.f, 1.f };
+		glm::vec3 eye{ 0.f, -30.f, 30.f };
 		glm::mat4 lookAtMat = glm::lookAt(
-			glm::vec3{ 0.f, -2.f, 3.f },
-			glm::vec3{ 0.f, 0.f, 2.f },
-			glm::vec3{ 0.f, 1.f, 0.f }
+			eye,
+			glm::vec3{ 0.f, 0.f, 0.f },
+			glm::vec3{ 0.f, 0.f, 1.f }
 		);
 		glm::mat4 projectionMat = glm::perspective(
 			glm::radians(90.f), 1.f, 0.024f, 1000.f
 		);
 		glm::mat4 transformMat = projectionMat * lookAtMat * rotationMat;
-		glm::vec3 lightDir = glm::normalize(glm::vec3{ -1.f, 0.f, -2.f });
-		glm::vec3 lightColor{ 1.f, 1.f, 1.f };
 		//uniform
 		glUniformMatrix4fv(
 			g_BasicShader->u_TransformMat(),
@@ -250,7 +255,13 @@ void RunGameLoop()
 			g_BasicShader->u_RotationMat(),
 			1, GL_FALSE, (float*)&rotationMat
 		);
-		glUniform1f(g_BasicShader->u_AmbientFactor(), 0.2f);
+		glUniform1f(g_BasicShader->u_AmbientFactor(), 0.8f);
+		glUniform1f(g_BasicShader->u_LightIntensity(), 1.f);
+		glUniform1f(g_BasicShader->u_Shininess(), 5);
+		glUniform3fv(
+			g_BasicShader->u_EyePosition(), 1,
+			(float*)&eye
+		);
 		glUniform3fv(
 			g_BasicShader->u_LightDir(), 1,
 			(float*)&lightDir
